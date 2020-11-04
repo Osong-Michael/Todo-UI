@@ -1,8 +1,13 @@
+import TodoList from './TodoList/TodoList';
+import Typography from '@material-ui/core/Typography';
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Todo List</h1>
+        <Typography variant="h1">Todo List</Typography>
+        <hr />
+        <TodoList />
       </header>
     </div>
   );
