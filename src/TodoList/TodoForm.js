@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 class TodoForm extends Component {
   constructor(props) {
@@ -37,25 +38,37 @@ class TodoForm extends Component {
   
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} id="todo" autoComplete="off">
-          <TextField 
-            id="task-input"
-            label="Task Description"
-            variant="outlined"
-            type="text"
-            name="todo[task]"
-            onChange={this.handleTaskChange}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            Add Task
-          </Button>
-        </form>
-      </div>
+      <Grid container>
+        <Grid item xs></Grid>
+        <Grid item xs={10}>
+          <form onSubmit={this.handleSubmit} id="todo" autoComplete="off">
+            <Grid container>
+              <Grid item xs={9}>
+                <TextField 
+                  id="task-input"
+                  label="Task Description"
+                  variant="outlined"
+                  type="text"
+                  name="todo[task]"
+                  onChange={this.handleTaskChange}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{height: '100%', margin: '0 0 0 7px'}}
+                >
+                  Add Task
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+        <Grid item xs></Grid>
+      </Grid>
     )
   }
 }
