@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TodoForm from './TodoForm';
 
-const apiUrl = 'http://localhost:3001/api/vi/todos';
+const apiUrl = 'http://localhost:3001/api/v1/todos';
 
 class TodoList extends Component {
   constructor(props) {
@@ -10,12 +10,41 @@ class TodoList extends Component {
       items: []
     }
   }
+
+  componentDidMount() {
+    this.getTasks();
+  }
+
+  getTasks() {
+    fetch(apiUrl)
+      .then(response => response.json())
+        .then(response_items => {
+          this.setState({
+            items: response_items
+          })
+        })
+  }
+
+  updateTodoList(item) {
+    let _items = this.state.items;
+    _items.unshift(item);
+    this.setState({
+      items: _items
+    })
+  }
   
   render() {
+    // console.log(this.state.items)
+    const items = this.state.items.map(item => (
+      <li key={item.id}>{item.task}</li>
+    ))
+
     return (
       <div>
         <TodoForm />
-        <p>Hey I am from TodoList</p>
+        <ul className="todo-list">
+          { items }
+        </ul>
       </div>
     )
   }
