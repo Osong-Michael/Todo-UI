@@ -9,6 +9,7 @@ class TodoList extends Component {
     this.state = {
       items: []
     }
+    this.updateTodoList = this.updateTodoList.bind(this);
   }
 
   componentDidMount() {
@@ -26,10 +27,8 @@ class TodoList extends Component {
   }
 
   updateTodoList(item) {
-    let _items = this.state.items;
-    _items.unshift(item);
     this.setState({
-      items: _items
+      items: [item, ...this.state.items]
     })
   }
   
@@ -41,7 +40,7 @@ class TodoList extends Component {
 
     return (
       <div>
-        <TodoForm />
+        <TodoForm apiUrl={apiUrl} updateTodoList={this.updateTodoList}/>
         <ul className="todo-list">
           { items }
         </ul>
